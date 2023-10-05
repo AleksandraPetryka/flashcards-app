@@ -8,10 +8,26 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      colors: {
+        customColorBrand: '#24b47e',
+        customSecondary: '#666',
+        customBgColor: '#101010',
+        customPanelColor: '#222',
+        customColor: '#fff',
+        customBorderColor: '#333',
+        customImageBorder: '#c8c8c8',
+      },
+      boxShadow: {
+        'custom': '0 2px 8px 0 rgba(0, 0, 0, 0.8)',
+      },
+      spacing: {
+        'custom': '5px',
+      },
+      borderWidth: {
+        'custom': '1px',
+      },
+      borderRadius: {
+        'custom': '5px',
       },
     },
   },
