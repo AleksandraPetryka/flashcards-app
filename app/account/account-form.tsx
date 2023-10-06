@@ -19,21 +19,23 @@ export default function AccountForm({ session }: { session: Session | null }) {
     try {
       setLoading(true);
 
-      let { data, error, status } = await supabase
-        .from("profiles")
-        .select(`full_name, username, website, avatar_url`)
-        .eq("id", user?.id)
-        .single();
+      const userId = user?.id;
+      if (userId) {
+        let {data, error, status} = await supabase
+            .from("profiles")
+            .select(`full_name, username, website, avatar_url`)
+            .eq("id", user?.id)
+            .single();
 
-      if (error && status !== 406) {
-        throw error;
-      }
-
-      if (data) {
-        setFullname(data.full_name);
-        setUsername(data.username);
-        setWebsite(data.website);
-        setAvatarUrl(data.avatar_url);
+        if (error && status !== 406) {
+          throw error;
+        }
+        if (data) {
+          setFullname(data.full_name);
+          setUsername(data.username);
+          setWebsite(data.website);
+          setAvatarUrl(data.avatar_url);
+        }
       }
     } catch (error) {
       alert("Error loading user data!");
@@ -43,7 +45,7 @@ export default function AccountForm({ session }: { session: Session | null }) {
   }, [user, supabase]);
 
   useEffect(() => {
-    getProfile();
+    getProfile()
   }, [user, getProfile]);
 
   async function updateProfile({
@@ -79,7 +81,7 @@ export default function AccountForm({ session }: { session: Session | null }) {
   return (
     <div className="form-widget flex flex-col gap-5">
       <Avatar
-        uid={user.id}
+        uid={user?.id || ""}
         url={avatar_url}
         size={150}
         onUpload={(url) => {

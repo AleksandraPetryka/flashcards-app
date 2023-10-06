@@ -1,9 +1,17 @@
+export type Json =
+    | string
+    | number
+    | boolean
+    | null
+    | { [key: string]: Json }
+    | Json[]
+
 export interface Database {
     public: {
         Tables: {
             profiles: {
                 Row: {
-                    id: string
+                    id: string | undefined
                     updated_at: string | null
                     username: string | null
                     full_name: string | null
@@ -11,7 +19,7 @@ export interface Database {
                     website: string | null
                 }
                 Insert: {
-                    id: string
+                    id: string | undefined
                     updated_at?: string | null
                     username?: string | null
                     full_name?: string | null
@@ -19,7 +27,7 @@ export interface Database {
                     website?: string | null
                 }
                 Update: {
-                    id?: string
+                    id?: string | undefined
                     updated_at?: string | null
                     username?: string | null
                     full_name?: string | null
