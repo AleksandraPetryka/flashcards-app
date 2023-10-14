@@ -89,6 +89,13 @@ body,
   display: none;
 }
 
+.supabase-auth-ui_ui-input {
+  color: white !important;
+}
+form#auth-magic-link button {
+  background-color: #60A5FA;
+}
+
 @media only screen and (min-width: 45em) {
   /* 720px */
   .col-1 {
@@ -133,13 +140,13 @@ body,
 }
 /* Widgets */
 
-/*.card {*/
-/*  width: 100%;*/
-/*  display: block;*/
-/*  border: var(--custom-border);*/
-/*  border-radius: var(--custom-border-radius);*/
-/*  padding: var(--custom-spacing);*/
-/*}*/
+.card {
+  width: 100%;
+  display: flex;
+  border: var(--custom-border);
+  border-radius: var(--custom-border-radius);
+  padding: var(--custom-spacing);
+}
 
 /*.footer {*/
 /*  position: absolute;*/

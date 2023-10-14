@@ -15,7 +15,7 @@ export default function AuthForm() {
             theme="dark"
             showLinks={false}
             providers={[]}
-            redirectTo="http://localhost:3000/auth/callback"
+            redirectTo="https://flashcards-app-tau.vercel.app/auth/callback"
         />
     )
 }
