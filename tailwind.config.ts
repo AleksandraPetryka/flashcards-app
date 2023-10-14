@@ -9,13 +9,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        customColorBrand: '#24b47e',
-        customSecondary: '#666',
+        customColorBrand: '#60A5FA',
+        customSecondary: '#939BB4',
         customBgColor: '#101010',
         customPanelColor: '#222',
         customColor: '#fff',
-        customBorderColor: '#333',
+        customBorderColor: '#656b7d',
         customImageBorder: '#c8c8c8',
+        customNavigation: '#282e3e',
+        customDarkNavigation: '#2e3856',
       },
       boxShadow: {
         'custom': '0 2px 8px 0 rgba(0, 0, 0, 0.8)',

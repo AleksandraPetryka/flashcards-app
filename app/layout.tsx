@@ -1,6 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Roboto } from 'next/font/google'
+import { Roboto } from '@next/font/google'
 import MainNavigation from '../components/ui/MainNavigation'
 import React from "react";
 
@@ -25,7 +25,7 @@ export default function RootLayout({
         <header>
           <MainNavigation />
         </header>
-        <main className="px-0 pt-12 pb-24 mx-auto w-11/12 sm:w-4/5 lg:w-3/4 lg:max-w-240">{children}</main>
+        <main className="pt-10 mx-auto lg:w-11/12 w-4/5 md:w-3/4" >{children}</main>
       </body>
     </html>
   );

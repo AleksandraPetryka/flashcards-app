@@ -67,25 +67,25 @@ export default function Avatar({
   };
 
   return (
-    <div>
+    <div className="flex flex-col basis-1/4 bg-customNavigation rounded p-4">
       {avatarUrl ? (
         <Image
           width={size}
           height={size}
           src={avatarUrl}
           alt="Avatar"
-          className="rounded truncate w-full object-cover"
+          className="rounded-full truncate w-full object-cover border-solid border-customSecondary border-2 mx-auto"
           style={{ height: size, width: size }}
         />
       ) : (
         <div
-          className="rounded truncate w-full bg-customBorderColor border border-solid border-customImageBorder"
+          className="rounded-full truncate w-full bg-customBorderColor border border-solid border-customImageBorder mx-auto"
           style={{ height: size, width: size }}
         />
       )}
-      <div style={{ width: size }}>
+      <div style={{ width: size }} className="mx-auto">
         <label
-          className="button mx-auto bg-customColorBrand w-full text-customColor border border-solid border-customColorBrand inline-block text-center rounded px-4 py-2 cursor-pointer font-xs uppercase"
+          className="button mx-auto my-2 bg-customColorBrand w-full text-customColor border border-solid border-customColorBrand inline-block text-center rounded px-4 py-2 cursor-pointer font-xs uppercase"
           htmlFor="single"
         >
           {uploading ? "Uploading ..." : "Upload"}

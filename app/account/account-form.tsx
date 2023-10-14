@@ -6,6 +6,7 @@ import {
   createClientComponentClient,
 } from "@supabase/auth-helpers-nextjs";
 import Avatar from "./avatar";
+import Card from "@/components/ui/Card";
 export default function AccountForm({ session }: { session: Session | null }) {
   const supabase = createClientComponentClient<Database>();
   const [loading, setLoading] = useState(true);
@@ -79,7 +80,8 @@ export default function AccountForm({ session }: { session: Session | null }) {
   }
 
   return (
-    <div className="form-widget flex flex-col gap-5">
+      <div className="flex flex-col gap-10 lg:flex-row justify-center">
+      <Card label="My profile" className="lg:w-full lg:max-w-3xl">
       <Avatar
         uid={user?.id || ""}
         url={avatar_url}
@@ -89,63 +91,66 @@ export default function AccountForm({ session }: { session: Session | null }) {
           updateProfile({ fullname, username, website, avatar_url: url });
         }}
       />
-      <div>
-        <label
-          htmlFor="email"
-          className="block my-1.5 mx-0 text-customSecondary text-s uppercase"
-        >
-          Email
-        </label>
-        <input
-          id="email"
-          type="text"
-          value={session?.user.email}
-          disabled
-          className="w-full p-2 text-s bg-customBgColor text-customColor rounded border border-customBorderColor border-solid disabled:border-customSecondary"        />
-      </div>
-      <div>
-        <label
-          htmlFor="fullName"
-          className="block my-1.5 mx-0 text-customSecondary text-s uppercase"
-        >
-          Full Name
-        </label>
-        <input
-          id="fullName"
-          type="text"
-          value={fullname || ""}
-          onChange={(e) => setFullname(e.target.value)}
-          className="w-full p-2 text-s bg-customBgColor text-customColor rounded border border-customBorderColor border-solid disabled:border-customSecondary"        />
-      </div>
-      <div>
-        <label
-          htmlFor="username"
-          className="block my-1.5 mx-0 text-customSecondary text-s uppercase"
-        >
-          Username
-        </label>
-        <input
-          id="username"
-          type="text"
-          value={username || ""}
-          onChange={(e) => setUsername(e.target.value)}
-          className="w-full p-2 text-s bg-customBgColor text-customColor rounded border border-customBorderColor border-solid disabled:border-customSecondary"        />
-      </div>
-      <div>
-        <label
-          htmlFor="website"
-          className="block my-1.5 mx-0 text-customSecondary text-s uppercase"
-        >
-          Website
-        </label>
-        <input
-          id="website"
-          type="url"
-          value={website || ""}
-          onChange={(e) => setWebsite(e.target.value)}
-          className="w-full p-2 text-s bg-customBgColor text-customColor rounded border border-customBorderColor border-solid disabled:border-customSecondary"
-        />
-      </div>
+      <div className=" flex basis-3/4 gap-5 flex-col bg-customDarkNavigation pr-4 pb-2">
+        <div>
+          <label
+            htmlFor="email"
+            className="block my-1.5 mx-0 text-customSecondary text-s uppercase"
+          >
+            Email
+          </label>
+          <input
+            id="email"
+            type="text"
+            value={session?.user.email}
+            className="w-full p-2 text-sm bg-customDarkNavigation text-customSecondary rounded border border-customBorderColor border-solid"
+          />
+        </div>
+        <div>
+          <label
+            htmlFor="fullName"
+            className="block my-1.5 mx-0 text-customSecondary text-s uppercase"
+          >
+            Full Name
+          </label>
+          <input
+            id="fullName"
+            type="text"
+            value={fullname || ""}
+            onChange={(e) => setFullname(e.target.value)}
+            className="w-full p-2 text-sm bg-customDarkNavigation text-customColor rounded border border-customBorderColor border-solid disabled:border-customSecondary"
+          />
+        </div>
+        <div>
+          <label
+            htmlFor="username"
+            className="block my-1.5 mx-0 text-customSecondary text-s uppercase"
+          >
+            Username
+          </label>
+          <input
+            id="username"
+            type="text"
+            value={username || ""}
+            onChange={(e) => setUsername(e.target.value)}
+            className="w-full p-2 text-sm bg-customDarkNavigation text-customColor rounded border border-customBorderColor border-solid disabled:border-customSecondary"
+          />
+        </div>
+        <div>
+          <label
+            htmlFor="website"
+            className="block my-1.5 mx-0 text-customSecondary text-s uppercase"
+          >
+            Website
+          </label>
+          <input
+            id="website"
+            type="url"
+            value={website || ""}
+            onChange={(e) => setWebsite(e.target.value)}
+            className="w-full p-2 text-sm bg-customDarkNavigation text-customColor rounded border border-customBorderColor border-solid disabled:border-customSecondary"
+          />
+        </div>
 
       <div className="">
         <button
@@ -161,11 +166,32 @@ export default function AccountForm({ session }: { session: Session | null }) {
 
       <div>
         <form action="/auth/signout" method="post">
-          <button className="button w-full text-customColor border border-solid border-customBorderColor bg-customBgColor inline-block text-center rounded px-4 py-2 cursor-pointer font-xs uppercase" type="submit">
+          <button
+            className="button w-full text-customColor border border-solid border-customBorderColor bg-customDarkNavigation inline-block text-center rounded px-4 py-2 cursor-pointer font-xs uppercase"
+            type="submit"
+          >
             Sign out
           </button>
         </form>
       </div>
-    </div>
+      </div>
+      </Card>
+        <Card label="My flashcards" className="">
+          <form action="/account/create-flashcard">
+            <button
+                className="button primary w-full text-customColor border border-solid border-customColorBrand bg-customColorBrand inline-block text-center rounded px-4 py-2 cursor-pointer font-xs uppercase"
+                type="submit">
+                Create flashcard
+            </button>
+          </form>
+          <form action="/account/my-flashcards">
+            <button
+                className="button primary w-full text-customColor border border-solid border-customColorBrand bg-customColorBrand inline-block text-center rounded px-4 py-2 cursor-pointer font-xs uppercase"
+                type="submit">
+              My flashcards
+            </button>
+          </form>
+        </Card>
+      </div>
   );
 }
