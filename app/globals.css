@@ -3,19 +3,6 @@
 @tailwind utilities;
 
 html,
-body {
-  --custom-bg-color: #101010;
-  --custom-panel-color: #222;
-  --custom-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.8);
-  --custom-color: #fff;
-  --custom-color-brand: #24b47e;
-  --custom-color-secondary: #666;
-  --custom-border: 1px solid #333;
-  --custom-border-radius: 5px;
-  --custom-spacing: 5px;
-}
-
-html,
 body,
 #__next {
   height: 100vh;
@@ -140,14 +127,6 @@ form#auth-magic-link button {
 }
 /* Widgets */
 
-.card {
-  width: 100%;
-  display: flex;
-  border: var(--custom-border);
-  border-radius: var(--custom-border-radius);
-  padding: var(--custom-spacing);
-}
-
 /*.footer {*/
 /*  position: absolute;*/
 /*  max-width: 100%;*/
@@ -210,30 +189,4 @@ form#auth-magic-link button {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-/*.form-widget {*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*  gap: 20px;*/
-/*}*/
-
-.form-widget > .button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  background-color: #444444;
-  text-transform: none !important;
-  transition: all 0.2s ease;
-}
-
-.form-widget .button:hover {
-  background-color: #2a2a2a;
-}
-
-.form-widget .button > .loader {
-  width: 17px;
-  animation: spin 1s linear infinite;
-  filter: invert(1);
 }

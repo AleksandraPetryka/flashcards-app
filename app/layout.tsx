@@ -21,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${roboto.className} p-0 m-0 bg-customBgColor`}>
-      <body className="font-display">
+      <body>
         <header>
           <MainNavigation />
         </header>

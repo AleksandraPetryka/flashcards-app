@@ -1,0 +1,34 @@
+{
+  "cards": [
+    {
+      "id": 1,
+      "title": "atherosclerosis",
+      "description": "hardening of the arteries"
+    },
+    {
+      "id": 2,
+      "title": "pneumonia",
+      "description": "lung inflammation"
+    },
+    {
+      "id": 3,
+      "title": "pyrexia",
+      "description": "fever"
+    },
+    {
+      "id": 4,
+      "title": "pharyngitis",
+      "description": "sore throat"
+    },
+    {
+      "id": 5,
+      "title": "myocardial infarction",
+      "description": "heart attack"
+    },
+    {
+      "id": 6,
+      "title": "exacerbation",
+      "description": "flare-up"
+    }
+  ]
+}
