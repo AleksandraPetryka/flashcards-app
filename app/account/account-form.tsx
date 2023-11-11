@@ -1,10 +1,7 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 import { Database } from "../database.types";
-import {
-  Session,
-  createClientComponentClient,
-} from "@supabase/auth-helpers-nextjs";
+import { Session, createClientComponentClient} from "@supabase/auth-helpers-nextjs";
 import Avatar from "./avatar";
 import Card from "@/components/ui/Card";
 export default function AccountForm({ session }: { session: Session | null }) {

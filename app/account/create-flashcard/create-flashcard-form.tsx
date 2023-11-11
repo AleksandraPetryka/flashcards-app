@@ -5,10 +5,9 @@ import Image from "next/image";
 import editIcon from "@/assets/edit_icon.svg";
 import deleteIcon from "@/assets/delete_icon.svg";
 import NewFlashcard from "@/components/ui/NewFlashcard";
-import {useState} from "react";
 
 export default function CreateFlashcardForm() {
-    const [newCardFormIsOpen, setNewCardFormIsOpen] = useState(true)
+
 
     const flashcards = data.cards.map((card) => (
         <Card label={card.id.toString()} className="" key={card.id}>
@@ -47,7 +46,7 @@ export default function CreateFlashcardForm() {
             />
           </Card>
         </div>
-          {newCardFormIsOpen && <NewFlashcard />}
+          {/*<NewFlashcard />*/}
           <div className="block text-zinc-300">
           <div className="grid lg:gap-5 lg:grid-cols-3 sm:grid-cols-2 sm:gap-3 grid-cols-1 gap-5 box-border">
             {flashcards}

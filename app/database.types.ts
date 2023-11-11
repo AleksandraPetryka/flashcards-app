@@ -34,6 +34,52 @@ export interface Database {
                     avatar_url?: string | null
                     website?: string | null
                 }
+            },
+            sets: {
+                Row: {
+                    id: string | undefined
+                    updated_at: string | null
+                    title: string | null
+                    description: string | null
+                    user_id: string | null
+                }
+                Insert: {
+                    id: string | undefined
+                    updated_at?: string | null
+                    title?: string | null
+                    description?: string | null
+                    user_id?: string | null
+                }
+                Update: {
+                    id?: string | undefined
+                    updated_at?: string | null
+                    title?: string | null
+                    description?: string | null
+                    user_id?: string | null
+                }
+            },
+            cards: {
+                Row: {
+                    id: string | undefined
+                    updated_at: string | null
+                    term: string | null
+                    definition: string | null
+                    set_id: string | null
+                }
+                Insert: {
+                    id: string | undefined
+                    updated_at?: string | null
+                    term?: string | null
+                    definition?: string | null
+                    set_id?: string | null
+                }
+                Update: {
+                    id?: string | undefined
+                    updated_at?: string | null
+                    term?: string | null
+                    definition?: string | null
+                    set_id?: string | null
+                }
             }
         }
         Views: {
