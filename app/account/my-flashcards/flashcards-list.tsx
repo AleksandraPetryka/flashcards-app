@@ -6,40 +6,29 @@ import Card from "@/components/ui/Card";
 import Image from "next/image";
 import editIcon from "@/assets/edit_icon.svg";
 import deleteIcon from "@/assets/delete_icon.svg";
+import NewFlashcard from "@/components/ui/NewFlashcard";
 
 export default function FlashcardList({ session }: {session: Session | null }) {
   const supabase = createClientComponentClient<Database>();
   const [loading, setLoading] = useState(true);
-  const [term, setTerm] = useState<string | null>(null);
-  const [definition, setDefinition] = useState<string | null>(null);
   const [pickedId, setPickedId] = useState<string>("")
     const [flashcards, setFlashcards] = useState([])
-  const [pickedSet, setPickedSet] = useState<string>("");
+    const [sets, setSets] = useState<{ id: string | undefined, title: string | null }[]>([{title: "Loading...", id: "1"}])
   const user = session?.user;
 
-  // useEffect(() => {
-  //   const getPickedId = async () => {
-  //     if (user?.id) {
-  //       const { data } = await supabase.from("sets").select("description");
-  //       console.log({data});
-  //     }
-  //   }
-  //   getPickedId();
-  // }, []);
 
-    const getPickedId = useCallback(async () => {
+    const getTitles = useCallback(async () => {
         try {
-            console.log(pickedSet)
             setLoading(true);
             const userId = user?.id;
             if (userId) {
                 let {data } = await supabase
                     .from("sets")
-                    .select(`id`)
-                    .eq("title", pickedSet)
-                    .single();
-                if (data?.id) {
-                    setPickedId(data.id);
+                    .select(`id, title`)
+                    .eq("user_id", userId)
+                if (data) {
+                    setSets(data);
+                    console.log(sets)
                 }
             }
         } catch (error) {
@@ -47,14 +36,14 @@ export default function FlashcardList({ session }: {session: Session | null }) {
         } finally {
             setLoading(false);
         }
-    }, [user, supabase, pickedSet]);
+    }, [user, supabase, pickedId]);
 
 
 
     const getFlashcard = useCallback(async () => {
         try {
         setLoading(true);
-
+        console.log(pickedId)
         const userId = user?.id;
         if (userId) {
             let { data } = await supabase
@@ -72,13 +61,13 @@ export default function FlashcardList({ session }: {session: Session | null }) {
         } finally {
         setLoading(false);
         }
-    }, [user, supabase, pickedId]);
+    }, [user, supabase, pickedId, setPickedId]);
 
     useEffect(() => {
-        getPickedId()
+        getTitles()
         getFlashcard()
         console.log(flashcards);
-    }, [user, getPickedId, getFlashcard, pickedSet, setPickedSet]);
+    }, [user, getFlashcard, pickedId]);
 
 
     const flashcardsDisplay = flashcards.map((card: { id: string, term: string, definition: string }) => (
@@ -98,17 +87,26 @@ export default function FlashcardList({ session }: {session: Session | null }) {
         </Card>
     ));
 
+    useEffect(() => {
+
+    }, );
+    const setsDisplay = sets.map((set: { id: string | undefined, title: string | null }) => (
+      <button
+        key={`${set} button`}
+        className="flex p-2 text-zinc-300 bg-customBorderColor rounded"
+        onClick={() => setPickedId(set.id as string)}
+      >
+        {loading ? "Loading ..." : set.title}
+      </button>
+    ));
+
   return (
     <div className="flex flex-col gap-10 lg:flex-row justify-center">
-      <Card label='' className="" key=''>
-        <button className="flex p-2 text-zinc-300 bg-customBorderColor rounded" onClick={() => setPickedSet("Pharmaceutical English")}>{loading ? "Loading ..." : "Pharmacy Flashcards"}</button>
-          <button className="flex p-2 text-zinc-300 bg-customBorderColor rounded" onClick={() => setPickedSet("Espanol A2")}>{loading ? "Loading ..." : "Espanol A2"}</button>
-          <div className="flex flex-col gap-5">
-            <p className="font-medium tracking-wide">{term}</p>
-            <p className="font-normal">{definition}</p>
-        </div>
+      <Card label="" className="" key="">
+        {setsDisplay}
+          {pickedId && <NewFlashcard />}
       </Card>
-        {flashcardsDisplay}
+      {flashcardsDisplay}
     </div>
   );
 }

@@ -1,34 +1,11 @@
 import Card from "@/components/ui/Card";
 import React, { useRef, useState } from "react";
-import {createServerActionClient} from "@supabase/auth-helpers-nextjs";
-import { cookies} from "next/headers";
-import {revalidatePath} from "next/cache";
-import {supabase} from "@supabase/auth-ui-shared";
 
-const NewFlashcard = async () => {
+const NewFlashcard = () => {
   const [validInput, setValidInput] = useState(true);
   const [newCardFormIsOpen, setNewCardFormIsOpen] = useState(false);
   const termInputRef = useRef<HTMLInputElement>(null);
   const definitionInputRef = useRef<HTMLInputElement>(null);
-
-  const addTodo = async (formData: FormData) => {
-    // 'use server'
-    const term = formData.get('term')
-    const definition = formData.get('definition')
-    const supabase = createServerActionClient({cookies})
-    await supabase.from('cards').insert([{term, definition}])
-    revalidatePath('/account/create-flashcard')
-  }
-  // loading data
-  // const {data, error} = await supabase
-  //     .from('cards')
-  //     .insert([{
-  //       term: 'Valencia',
-  //       definition: 'Valencia is my favourite city in Spain'
-  //     }, {
-  //       term: 'Madrid',
-  //       definition: 'Madrid is the capital of Spain'
-  //     }])
 
   interface FormDataType {
     term: string;
@@ -57,7 +34,6 @@ const NewFlashcard = async () => {
         {(newCardFormIsOpen && (
             <Card label="New Flashcard" className="">
               <form onSubmit={submitHandler} className="flex flex-col gap-5">
-                <h2 className="font-bold text-zinc-300 text-2xl">Add Card</h2>
                 <div className="grid grid-cols-12">
                   <div
                       className={`${
